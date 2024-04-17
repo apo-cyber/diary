@@ -17,46 +17,18 @@
     <link rel="stylesheet" href="{% static 'css/one-page-wonder.css' %}">
     <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
     {% load django_bootstrap5 %}
-    {% comment %} {% bootstrap_css %} {% endcomment %}
+    {% block head %}{% endblock head %}
   </head>
   <body id="wrapper">
-      <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-      <div class="container px-5">
-          <a class="navbar-brand" href="{% url 'diary:index' %}">Private Diary</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link {% block active_inquiry %}{% endblock active_inquiry %} " href="#!">INQUIRY</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#!">Sign Up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#!">Log In</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <!-- Navigation-->
+    {% include "_navbar.html" %}
     <!-- Header-->
     {% block header %}{% endblock header %}
     <!-- Content-->
     {% block contents %}{% endblock contents %}
     <!-- Footer-->
-    <footer class="py-5 bg-black">
-      <div class="container px-5">
-        <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2023</p>
-      </div>
-    </footer>
+    {% include "_footer.html" %}
     <!-- Bootstrap core JS-->
     {% bootstrap_javascript %}
-    {% comment %} <!-- Core theme JS-->
-    <script src="js/scripts.js"></script> {% endcomment %}
   </body>
 </html>

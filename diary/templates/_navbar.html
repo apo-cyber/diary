@@ -1,0 +1,34 @@
+ <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+  <div class="container px-5">
+      <a class="navbar-brand" href="{% url 'diary:index' %}">Private Diary</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link {% block active_inquiry %}{% endblock %} " href="{% url 'diary:inquiry' %}">INQUIRY</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link {% block active_daily_list %}{% endblock %} " href="{% url 'diary:diary_list' %}">DIARY LIST</a>
+        </li>
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link {% block active_signup %}{% endblock active_signup %}" href="{% url 'account_signup' %}">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% block active_login %}{% endblock active_login %}" href="{% url 'account_login' %}">Log In</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
