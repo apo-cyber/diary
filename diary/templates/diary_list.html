@@ -14,16 +14,16 @@
   <div class="row gx-4 gx-lg-5 justify-content-center">
     <div class="col-md-10 col-lg-8 col-xl-7">
       <div class="d-flex justify-content-end mb-4">
-        <a class="btn btn-primary float-right" href="#">新規作成</a>
+        <a class="btn btn-primary float-right" href="{% url "diary:diary_create" %}">新規作成</a>
       </div>
       {% for diary in diary_list %}
       <div class="post-preview">
-        <a href="#">
+        <a href="{% url 'diary:diary_detail' diary.pk %}">
           <h2 class="post-title">
             {{ diary.title }}
           </h2>
           <h3 class="post-subtitle">
-             {{ diary.content|truncatechars:20 }}
+            {{ diary.content|truncatechars:20 }}
           </h3>
         </a>
         <p class="post-meta">{{ diary.created_at}}</p>
@@ -32,6 +32,8 @@
       {% empty %}
       <p>日記がありません。</p>
       {% endfor %}
+      <!-- Pager-->
+      {% include "_pagenation.html" %}
     </div>
   </div>
 </div>

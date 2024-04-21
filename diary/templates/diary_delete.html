@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}日記削除|Private Diary{% endblock title %}
+
+{% block active_diary_list %}active{% endblock active_diary_list %}
+
+{% block contents %}
+<div class="container my-div-style">
+  <div class="row">
+    <form method="post">
+      {% csrf_token %}
+      <p>本当に削除しますか？</p>
+      <button class="btn btn-primary mt-5" type="submit">削除</button>
+      <a href="{% url 'diary:diary_detail' object.pk %}" class="btn btn-secondary mt-5 ml-2">キャンセル</a>
+    </form>
+  </div>
+</div>
+{% endblock contents %}

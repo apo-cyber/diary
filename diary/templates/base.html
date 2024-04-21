@@ -24,8 +24,25 @@
     {% include "_navbar.html" %}
     <!-- Header-->
     {% block header %}{% endblock header %}
+
+    {% if messages %}
+    <div class="container my-div-style">
+      <div class="row">
+        <ul class="messages" style="list-style: none;">
+          {% for message in messages %}
+          <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+            {{ message }}
+          </li>
+          {% endfor %}
+          </ul>
+      </div>
+    </div>
+    {% endif %}
+
     <!-- Content-->
-    {% block contents %}{% endblock contents %}
+    {% block contents %}
+
+    {% endblock contents %}
     <!-- Footer-->
     {% include "_footer.html" %}
     <!-- Bootstrap core JS-->

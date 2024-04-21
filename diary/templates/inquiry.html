@@ -4,31 +4,20 @@
 {% block active_inquiry %}active{% endblock active_inquiry %}
 
 {% block contents %}
-<div class="container mb-3">
-  <div class="my-div-style">
-    {% if messages %}
-    <ul class="list-unstyled" style="list-style: none;">
-      {% for message in messages %}
-      <li {%if message.tags %} class="{{ message.tags }}" {% endif %}>
-        {{ message }}
-      </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    <form action="" method="post">
-      {% csrf_token %}
-      {{form.non_field_errors}}
-      {% for field in form %}
-        <div class="mb-4 col-8">
-          <label for="{{field.id_for_label}}" class="form-label">
-            <strong>{{field.label_tag}}</strong>
-          </label>
-          {{field}}
-          {{field.errors}}
-        </div>
-      {% endfor %}
-      <button class="btn btn-primary" type="submit">送信</button>
-    </form>
-  </div>
+<div class="container my-div-style">
+  <form action="" method="post">
+    {% csrf_token %}
+    {{form.non_field_errors}}
+    {% for field in form %}
+      <div class="mb-4 col-8">
+        <label for="{{field.id_for_label}}" class="form-label">
+          <strong>{{field.label_tag}}</strong>
+        </label>
+        {{field}}
+        {{field.errors}}
+      </div>
+    {% endfor %}
+    <button class="btn btn-primary" type="submit">送信</button>
+  </form>
 </div>
 {% endblock contents %}

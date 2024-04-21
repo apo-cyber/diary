@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}日記作成|Private Diary{% endblock title %}
+
+{% block active_diary_list %}active{% endblock active_diary_list %}
+
+{% block contents %}
+<div class="container my-div-style">
+  <div class="row">
+    <form action="" method="post" enctype='multipart/form-data'>
+      {% csrf_token %}
+      <table class="table">
+        {{ form.as_table }}
+      </table>
+      <button type="submit"class="btn btn-primary mb-4">作成</button>
+    </form>
+  </div>
+</div>
+{% endblock contents %}
