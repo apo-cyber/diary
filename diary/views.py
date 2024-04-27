@@ -105,21 +105,14 @@ class DiaryUpdateView(LoginRequiredMixin, OnlyYouMixin, UpdateView):
         messages.error(self.request, '日記の更新に失敗しました。')
         return super().form_invalid(form)
 
-# class DiaryDeleteView(LoginRequiredMixin, OnlyYouMixin, DeleteView):
-#     model = Diary
-#     template_name = 'diary_delete.html'
-#     success_url = reverse_lazy('diary:diary_list')
-
-#     def delete(self, request, *args, **kwargs):
-#         messages.success(self.request, "日記を削除しました。")
-#         return super().delete(request, *args, **kwargs)
-
 class DiaryDeleteView(LoginRequiredMixin, OnlyYouMixin, DeleteView):
     template_name = 'diary_delete.html'
     model = Diary
     success_url = reverse_lazy('diary:diary_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, "日記を削除しました。")
+        return super().form_valid(form)
+
     def delete(self, request, *args, **kwargs):
-        response = super().delete(request, *args, **kwargs)
-        messages.success(request, '日記を削除しました。')
-        return response
+        return super().delete(request, *args, **kwargs)

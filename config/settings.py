@@ -151,6 +151,9 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 
 LOGIN_REDIRECT_URL = 'diary:index'
 
+BACK_UP_PATH = 'backup/'
+NUM_SAVED_BACKUP = 30
+
 # local_settings.py をインポート
 try:
     from .local_settings import *
